@@ -3,7 +3,7 @@ plugins {
     id 'application'
     id 'org.openjfx.javafxplugin' version '0.0.8'
 }
-group = 'com.test'
+group = 'fr.minemobs'
 version = '1.0-SNAPSHOT'
 
 repositories {
@@ -11,11 +11,13 @@ repositories {
 }
 
 application {
-    mainClassName = "com.example.MainKt"
+    mainClassName = "fr.minemobs.pepitedorlocalization.MainKt"
 }
 
 dependencies {
     implementation "no.tornado:tornadofx:$tornadofx_version"
+    implementation 'com.google.code.gson:gson:2.8.8'
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.4.32"
     testImplementation "org.jetbrains.kotlin:kotlin-test-junit"
 }
 
