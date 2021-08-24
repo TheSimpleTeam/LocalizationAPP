@@ -28,6 +28,7 @@ class MainView : View("Pepite D'or Localization UI") {
     private val key = SimpleStringProperty()
     private var lang = SimpleStringProperty()
     private var translatedString = SimpleStringProperty()
+    private var languagesField : Field? = null;
 
     override val root = form {
         fieldset {
@@ -37,14 +38,14 @@ class MainView : View("Pepite D'or Localization UI") {
                         val dir = chooseDirectory("Select Target Directory") ?: return@action
                         if(!dir.isDirectory) return@action
                         folderLoc = dir
-                        fire(OnDirectoryChoosed)
+                        if(languagesField == null) fire(OnDirectoryChoosed)
                     }
                 }
             }
 
             subscribe<OnDirectoryChoosed> {
                 run {
-                    field("Languages", Orientation.HORIZONTAL, true) {
+                    languagesField = field("Languages", Orientation.HORIZONTAL, true) {
                         combobox<String>(lang, controller.getAllLanguages(folderLoc!!))
                     }
                 }
