@@ -77,11 +77,11 @@ class MainView : View("Pepite D'or Localization UI") {
                         if(key.value == null || key.value.isEmpty()) return@action
                         val jsonFile = File(folderLoc!!, "$it.json")
                         val reader = FileReader(jsonFile, Charsets.UTF_8)
-                        val map : HashMap<String, String> = LinkedHashMap()
+                        val map : HashMap<String, String> = HashMap()
                         map.putAll(gson.fromJson(reader, map.javaClass))
                         map[key.value] = translatedString.value
                         val writer = FileWriter(jsonFile, Charsets.UTF_8)
-                        gson.toJson(map, writer)
+                        gson.toJson(map.toList().sortedBy { (k, _) -> k }.toMap(), writer)
                         writer.close()
                         println("Added \"${key.value}\": \"${translatedString.value}\"")
                     }
