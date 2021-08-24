@@ -83,6 +83,7 @@ class MainView : View("Pepite D'or Localization UI") {
                         val writer = FileWriter(jsonFile, Charsets.UTF_8)
                         gson.toJson(map.toList().sortedBy { (k, _) -> k }.toMap(), writer)
                         writer.close()
+                        map.clear()
                         println("Added \"${key.value}\": \"${translatedString.value}\"")
                     }
                 }
